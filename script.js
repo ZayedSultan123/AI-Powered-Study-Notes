@@ -1,26 +1,18 @@
-async function generateSummary() {
-    let text = document.getElementById("textInput").value;
-    if (text.length === 0) {
-        alert("Please enter some text.");
-        return;
-    }
-    document.getElementById("output").innerText = "Generating summary...";
-    try {
-        let response = await fetch("https://api.openai.com/v1/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + API_KEY
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                prompt: "Summarize this: " + text,
-                max_tokens: 100
-            })
-        });
-        let data = await response.json();
-        document.getElementById("output").innerText = data.choices[0].text.trim();
-    } catch (error) {
-        document.getElementById("output").innerText = "Error generating summary. Try again.";
-    }
+const API_URL = "https://workers-playground-cool-unit-2103.zayedsultan37979.workers.dev/";
+
+async function fetchAIResponse(userInput) {
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: userInput }]
+    })
+  });
+
+  const data = await response.json();
+  return data.choices[0].message.content;
 }
+
+// Example Usage:
+fetchAIResponse("Hello, AI!").then(console.log);
