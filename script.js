@@ -23,7 +23,7 @@ async function fetchAIResponse(userInput) {
   }
 }
 
-// Function called by the button click
+// Function to handle the button click
 async function generateSummary() {
   const userInput = document.getElementById("textInput").value;
   if (!userInput) {
@@ -32,12 +32,12 @@ async function generateSummary() {
   }
 
   document.getElementById("output").innerText = "Generating summary...";
-  
+
   const summary = await fetchAIResponse(userInput);
   document.getElementById("output").innerText = summary;
 }
 
-// Ensure the event listener is properly set
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector("button").addEventListener("click", generateSummary);
+// Set up event listener for button click after DOM content is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("generateButton").addEventListener("click", generateSummary);
 });
