@@ -1,4 +1,4 @@
-const API_URL = "https://workers-playground-cool-unit-2103.zayedsultan37979.workers.dev/";
+const API_URL = "https://little-unit-5bf3.zayedsultan37979.workers.dev/";
 
 async function fetchAIResponse(userInput) {
   try {
